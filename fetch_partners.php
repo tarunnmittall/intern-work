@@ -1,4 +1,5 @@
 <?php
+// die("Unable to connect to ");
 include 'db_connection.php';
 $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
 
