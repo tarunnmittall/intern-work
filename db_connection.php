@@ -10,6 +10,6 @@ error_reporting(-1);
 // die("Unable to connect to ");
 $host = "localhost";
 $dbusername = "root";
-$dbpassword = "Tarun@12!";
+$dbpassword = "";
 $dbname = "intern";
 ?>

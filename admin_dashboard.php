@@ -123,7 +123,13 @@ $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     // Output data of each row
                     while($row = $result->fetch_assoc()) {
-                        $ranking = htmlspecialchars($row['ranking']);
+                        if(!is_null($row['ranking'])){
+                            $ranking = htmlspecialchars($row['ranking']);
+                        }
+                        else{
+                            $ranking="";
+                        }
+                        
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['first_event']) . "</td>";
@@ -131,7 +137,7 @@ $result = $conn->query($sql);
                         echo "<td>" . htmlspecialchars($row['part1']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['second_event']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['part2']) . "</td>";
-                        echo "<td><input type='text' name='ranking[" . htmlspecialchars($row['id']) . "]' value='" . htmlspecialchars($row['ranking']) . "'></td>";
+                        echo "<td><input type='text' name='ranking[" . htmlspecialchars($row['id']) . "]' value='" . $ranking . "'></td>";
                         echo "</tr>";
                     }
                 } else {
