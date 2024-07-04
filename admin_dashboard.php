@@ -29,10 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Database connection
-$host = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "intern";
+include 'db_connection.php';
 
 // Create connection
 $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);

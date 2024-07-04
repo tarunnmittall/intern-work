@@ -8,12 +8,12 @@ if ($conn->connect_error) {
 }
 
 // Fetching data based on the selected radio button value
-$sql = "SELECT part2 FROM registration";
+$sql = "SELECT name FROM registration";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // Output data for each row
     while($row = $result->fetch_assoc()) {
-        echo '<option value="' . htmlspecialchars($row["part2"]) . '">' . htmlspecialchars($row["part2"]) . '</option>';
+        echo '<option value="' . htmlspecialchars($row["name"]) . '">' . htmlspecialchars($row["name"]) . '</option>';
     }
 } else {
     echo '<option>No partners found</option>';
