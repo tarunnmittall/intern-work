@@ -1,12 +1,10 @@
 <?php
-$host = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "intern";
-
+include 'db_connection.php';
 $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
+
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed:" . $conn->connect_error);
+    die("Connection failed: " . $conn->connect_error);
 }
 
 // Fetching data based on the selected radio button value

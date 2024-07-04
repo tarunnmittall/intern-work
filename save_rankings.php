@@ -9,14 +9,8 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 // Database connection
-$host = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "intern";
-
-// Create connection
+include 'db_connection.php';
 $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
-
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

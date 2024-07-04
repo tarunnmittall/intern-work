@@ -2,10 +2,7 @@
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $phone = $_POST['phone'];
         $dob = $_POST['dob'];
-        $host = "localhost";
-        $dbusername = "root";
-        $dbpassword = "";
-        $dbname = "intern";
+        include 'db_connection.php';
         $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
         if ($conn->connect_error) {
             die("Connection failed:" . $conn->connect_error);
