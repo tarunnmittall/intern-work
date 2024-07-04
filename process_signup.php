@@ -14,10 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stay = $_POST['stay'];
     $payment = $_POST['payment'];
 
-    $host = "host";
-    $dbusername = "root";
-    $dbpassword = "Tarun@12!";
-    $dbname = "intern";
+    include 'db_connection.php';
 
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
     if ($conn->connect_error) {
