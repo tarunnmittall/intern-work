@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stay = $_POST['stay'];
     $payment = $_POST['payment'];
 
-    $host = "localhost";
+    $host = "host";
     $dbusername = "root";
     $dbpassword = "Tarun@12!";
     $dbname = "intern";
