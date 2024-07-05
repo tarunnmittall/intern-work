@@ -1,28 +1,22 @@
 <?php
 include 'db_connection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $phone = $_POST['phone'];
-    $dob = $_POST['dob'];
-    if(!is_null($city)){
-        $city = $_POST['city'];
-    }
-    else{
-        $city="";
-    }
-    
-    $first_event = $_POST['first_event'];
-    $part1 = $_POST['part1'];
-    $second_event = $_POST['second_event'];
-    $part2 = $_POST['part2'];
-    $shirt = $_POST['shirt'];
-    $short = $_POST['short'];
-    $food = $_POST['food'];
-    $stay = $_POST['stay'];
-    $payment = $_POST['payment'];
+    $name = isset($_POST['name']) ? $_POST['name'] : null;
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : null;
+    $dob = isset($_POST['dob']) ? $_POST['dob'] : null;
+    $city = isset($_POST['city']) ? $_POST['city'] : null;
+    $first_event = isset($_POST['first_event']) ? $_POST['first_event'] : null;
+    $part1 = isset($_POST['part1']) ? $_POST['part1'] : null;
+    $second_event = isset($_POST['second_event']) ? $_POST['second_event'] : null;
+    $part2 = isset($_POST['part2']) ? $_POST['part2'] : null;
+    $shirt = isset($_POST['shirt']) ? $_POST['shirt'] : null;
+    $short = isset($_POST['short']) ? $_POST['short'] : null;
+    $food = isset($_POST['food']) ? $_POST['food'] : null;
+    $stay = isset($_POST['stay']) ? $_POST['stay'] : null;
+    $payment = isset($_POST['payment']) ? $_POST['payment'] : null;
 
     
-
+    include 'db_connection.php';
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
     if ($conn->connect_error) {
         die("Connection failed:" . $conn->connect_error);
