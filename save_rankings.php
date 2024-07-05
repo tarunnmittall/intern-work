@@ -10,10 +10,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 
 // Database connection
 include 'db_connection.php';
-
-// Create connection
 $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
-
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
