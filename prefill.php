@@ -135,15 +135,15 @@
                 <label for="nil">No</label>
         </div>
         <br>
-        <<div class="form-group">
-        <label for="name">Have you made the payment?<span class="mandatory">*</span></label>
-        <div class="radio-options">
-          <input type="radio" id="yes" name="payment" value="yes" <?php if ($_GET['payment'] === 'yes') echo 'checked'; ?>>>
-          <label for="yes">Yes</label>
-          <input type="radio" id="nil" name="payment" value="nil" <?php if ($_GET['payment'] === 'yes') echo 'checked'; ?>>>
-          <label for="nil">No</label>
+        <div class="form-group">
+            <label for="name">Have you made the payment?</label>
+            <div class="radio-options">
+                <input type="radio" id="yes" name="payment" value="yes" <?php if ($_GET['payment'] === 'yes') echo 'checked'; ?>>
+                <label for="yes">Yes</label>
+                <input type="radio" id="nil" name="payment" value="nil" <?php if ($_GET['payment'] === 'yes') echo 'checked'; ?>>
+                <label for="nil">No</label>
+            </div>
         </div>
-      </div>
         <div class="field">
         <input type="submit" value="Update" class="signup-button" onclick="openPopup()">
       </div>
