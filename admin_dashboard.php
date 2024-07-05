@@ -143,17 +143,13 @@ $result = $conn->query($sql);
                         else{
                             $ranking="";
                         }
-                        $first_event = htmlspecialchars($row['first_event'] ?? '');
-                        $part1 = htmlspecialchars($row['part1'] ?? '');
-                        $second_event = htmlspecialchars($row['second_event'] ?? '');
-                        $part2 = htmlspecialchars($row['part2'] ?? '');
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
-                        echo "<td>$first_event</td>";
+                        echo "<td>" . htmlspecialchars($row['first_event']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['phone']) . "</td>";
-                        echo "<td>$part1</td>";
-                        echo "<td>$second_event</td>";
-                        echo "<td>$part2</td>";
+                        echo "<td>" . htmlspecialchars($row['part1']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['second_event']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['part2']) . "</td>";
                         echo "<td><input type='text' name='ranking[" . htmlspecialchars($row['id']) . "]' value='" . $ranking . "'></td>";
                         echo "</tr>";
                     }
