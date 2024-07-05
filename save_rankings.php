@@ -18,21 +18,32 @@ if ($conn->connect_error) {
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Loop through POST data to update rankings
-    foreach ($_POST['ranking'] as $id => $ranking) {
-        $id = $conn->real_escape_string($id);
-        $ranking = $conn->real_escape_string($ranking);
+    // Prepare the UPDATE statement
+    $stmt = $conn->prepare("UPDATE registration SET ranking=? WHERE id=?");
 
-        // Update the ranking for the corresponding ID in the database
-        $sql = "UPDATE registration SET ranking='?' WHERE id='?'";
-        if ($conn->query($sql) !== TRUE) {
-            echo "Error updating record: " . $conn->error;
+    // Check if prepare() succeeded
+    if (!$stmt) {
+        echo "Prepare failed: (" . $conn->errno . ") " . $conn->error;
+    } else {
+        // Loop through POST data to update rankings
+        foreach ($_POST['ranking'] as $id => $ranking) {
+            $id = intval($id); // Ensure $id is an integer for security
+            $ranking = intval($ranking); // Ensure $ranking is an integer
+
+            // Bind parameters and execute the statement
+            $stmt->bind_param("ii", $ranking, $id);
+            if (!$stmt->execute()) {
+                echo "Error updating record: (" . $stmt->errno . ") " . $stmt->error;
+            }
         }
-    }
 
-    // Redirect back to admin dashboard with success message
-    header("Location: admin_dashboard.php?success=1");
-    exit;
+        // Close statement
+        $stmt->close();
+
+        // Redirect back to admin dashboard with success message
+        header("Location: admin_dashboard.php?success=1");
+        exit;
+    }
 } else {
     // Redirect to admin dashboard if accessed without POST
     header("Location: admin_dashboard.php");
