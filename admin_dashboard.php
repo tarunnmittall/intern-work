@@ -6,7 +6,7 @@ $adminPhone = "9318393263"; // Example admin phone number
 $adminDob = "2002-12-26"; // Example admin date of birth
 
 // Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $phone = $_POST['phone'];
     $dob = $_POST['dob'];
 
@@ -39,8 +39,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$firstEventFilter = isset($_GET['first_event'])? $_GET['first_event'] : '';
-$secondEventFilter = isset($_GET['second_event'])? $_GET['second_event'] : '';
+$firstEventFilter = isset($_GET['first_event']) ? $_GET['first_event'] : '';
+$secondEventFilter = isset($_GET['second_event']) ? $_GET['second_event'] : '';
 
 // Fetch events for filter dropdowns
 $firstEventsResult = $conn->query("SELECT DISTINCT first_event FROM registration");
@@ -132,24 +132,10 @@ $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     // Output data of each row
                     while($row = $result->fetch_assoc()) {
-                        if(!is_null($row['ranking'])){
-                            $ranking = htmlspecialchars($row['ranking']);
-                        }
-                        else{
-                            $ranking="";
-                        }
-                        if(!is_null($row['first_event'])){
-                            $first_event = htmlspecialchars($row['first_event']);
-                        }
-                        else{
-                            $first_event="";
-                        }
-                        if(!is_null($row['second_event'])){
-                            $second_event = htmlspecialchars($row['second_event']);
-                        }
-                        else{
-                            $second_event="";
-                        }
+                        $ranking = htmlspecialchars($row['ranking']);
+                        $first_event = htmlspecialchars($row['first_event']);
+                        $second_event = htmlspecialchars($row['second_event']);
+
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                         echo "<td>" . $first_event . "</td>";
@@ -166,8 +152,12 @@ $result = $conn->query($sql);
                 ?>
             </tbody>
         </table>
+        <div style="text-align:center;">
+            <input type="submit" name="filter_action" value="Filter">
+        </div>
     </form>
-    <form method="post" action="save_rankings.php"></form>
+
+    <form method="post" action="save_rankings.php">
         <input type="hidden" name="first_event_filter" value="<?php echo htmlspecialchars($firstEventFilter); ?>">
         <input type="hidden" name="second_event_filter" value="<?php echo htmlspecialchars($secondEventFilter); ?>">
         <div style="text-align:center;">
