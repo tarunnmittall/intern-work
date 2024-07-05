@@ -14,7 +14,7 @@
     </ul>
 </nav>
     <div class="container">
-        <h2>Signup Form</h2>
+        <h2>My Profile</h2>
         <form action="update_record.php" method="post">
         <div class="form-group">
             <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">

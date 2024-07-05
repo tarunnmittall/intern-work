@@ -86,6 +86,7 @@ $result = $conn->query($sql);
     </script>
 </head>
 <body>
+    <link rel="stylesheet" href="admin.css">
 <nav class="navbar">
     <ul>
       <li><a href="index.html">Home</a></li>
