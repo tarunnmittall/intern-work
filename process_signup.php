@@ -4,7 +4,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $phone = $_POST['phone'];
     $dob = $_POST['dob'];
-    $city = $_POST['city'];
+    if(!is_null($city)){
+        $city = $_POST['city'];
+    }
+    else{
+        $city="";
+    }
+    
     $first_event = $_POST['first_event'];
     $part1 = $_POST['part1'];
     $second_event = $_POST['second_event'];
