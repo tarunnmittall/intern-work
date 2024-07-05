@@ -10,7 +10,10 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 
 // Database connection
 include 'db_connection.php';
+
+// Create connection
 $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
+
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -20,27 +23,16 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Loop through POST data to update rankings
     foreach ($_POST['ranking'] as $id => $ranking) {
-        // Sanitize inputs
-        $id = intval($id);
-        $ranking = intval($ranking);
+        $id = $conn->real_escape_string($id);
+        $ranking = $conn->real_escape_string($ranking);
 
         // Update the ranking for the corresponding ID in the database
-        $sql = "UPDATE registration SET ranking=? WHERE id=?";
-        $stmt = $conn->prepare($sql);
-        
-        // Bind parameters and execute
-        $stmt->bind_param("si", $ranking, $id);
-        
-        if ($stmt->execute()) {
-            // Success
-        } else {
-            // Error
-            echo "Error updating record: " . $stmt->error;
+        $sql = "UPDATE registration SET ranking='$ranking' WHERE id='$id'";
+        if ($conn->query($sql) !== TRUE) {
+            echo "Error updating record: " . $conn->error;
         }
-        
-        // Close statement
-        $stmt->close();
     }
+
     // Redirect back to admin dashboard with success message
     header("Location: admin_dashboard.php?success=1");
     exit;

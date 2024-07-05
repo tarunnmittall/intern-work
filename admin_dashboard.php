@@ -39,9 +39,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Filters
-$firstEventFilter = isset($_GET['first_event']) ? $_GET['first_event'] : '';
-$secondEventFilter = isset($_GET['second_event']) ? $_GET['second_event'] : '';
+$firstEventFilter = isset($_GET['first_event'])? $_GET['first_event'] : '';
+$secondEventFilter = isset($_GET['second_event'])? $_GET['second_event'] : '';
 
 // Fetch events for filter dropdowns
 $firstEventsResult = $conn->query("SELECT DISTINCT first_event FROM registration");
@@ -57,6 +56,7 @@ if ($secondEventFilter) {
 }
 $result = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,36 +79,31 @@ $result = $conn->query($sql);
             width: 100%;
         }
     </style>
-    <script>
-        function submitFilterForm() {
-            document.getElementById('filterForm').submit();
-        }
-    </script>
 </head>
 <body>
     <link rel="stylesheet" href="table.css">
-<nav class="navbar">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">About</a></li>
-    </ul>
-</nav>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </nav>
     <h1>Admin Dashboard - Report</h1>
 
     <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
         <p style="color: green;">Rankings have been saved successfully!</p>
     <?php endif; ?>
 
-    <form id="filterForm" method="get" action="">
+    <form method="get" action="">
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>
-                        First Event<br>
-                        <select name="first_event" onchange="submitFilterForm()">
+                    First Event<br>
+                        <select name="first_event" onchange="this.form.submit()">
                             <option value="">All</option>
                             <?php while($row = $firstEventsResult->fetch_assoc()) {
                                 $selected = ($row['first_event'] == $firstEventFilter) ? 'selected' : '';
@@ -119,8 +114,8 @@ $result = $conn->query($sql);
                     <th>Phone Number</th>
                     <th>First Event Partner</th>
                     <th>
-                        Second Event<br>
-                        <select name="second_event" onchange="submitFilterForm()">
+                    Second Event<br>
+                        <select name="second_event" onchange="this.form.submit()">
                             <option value="">All</option>
                             <?php while($row = $secondEventsResult->fetch_assoc()) {
                                 $selected = ($row['second_event'] == $secondEventFilter) ? 'selected' : '';
@@ -155,7 +150,6 @@ $result = $conn->query($sql);
                         else{
                             $second_event="";
                         }
-
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                         echo "<td>" . $first_event . "</td>";
@@ -173,8 +167,7 @@ $result = $conn->query($sql);
             </tbody>
         </table>
     </form>
-
-    <form method="post" action="save_rankings.php">
+    <form method="post" action="save_rankings.php"></form>
         <input type="hidden" name="first_event_filter" value="<?php echo htmlspecialchars($firstEventFilter); ?>">
         <input type="hidden" name="second_event_filter" value="<?php echo htmlspecialchars($secondEventFilter); ?>">
         <div style="text-align:center;">
