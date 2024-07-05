@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed:" . $conn->connect_error);
     } else {
         // Check if the record with the same phone and dob already exists
-        $checkStmt = $conn->prepare("SELECT * FROM registration WHERE phone=? AND dob=?");
+        $checkStmt = $conn->prepare("SELECT * FROM registration WHERE phone=? OR dob=?");
         $checkStmt->bind_param("ss", $phone, $dob);
         $checkStmt->execute();
         $checkStmtResult = $checkStmt->get_result();
