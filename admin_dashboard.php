@@ -137,23 +137,26 @@ $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     // Output data of each row
                     while($row = $result->fetch_assoc()) {
-                        if(!is_null($row['ranking'])){
-                            $ranking = htmlspecialchars($row['ranking']);
-                        }
-                        else{
-                            $ranking="";
-                        }
+                        $name = htmlspecialchars($row['name'] ?? '');
+                        $first_event = htmlspecialchars($row['first_event'] ?? '');
+                        $phone = htmlspecialchars($row['phone'] ?? '');
+                        $part1 = htmlspecialchars($row['part1'] ?? '');
+                        $second_event = htmlspecialchars($row['second_event'] ?? '');
+                        $part2 = htmlspecialchars($row['part2'] ?? '');
+                        $ranking = htmlspecialchars($row['ranking'] ?? '');
+                        
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['name']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['first_event']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['phone']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['part1']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['second_event']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['part2']) . "</td>";
-                        echo "<td><input type='text' name='ranking[" . htmlspecialchars($row['id']) . "]' value='" . $ranking . "'></td>";
+                        echo "<td>$name</td>";
+                        echo "<td>$first_event</td>";
+                        echo "<td>$phone</td>";
+                        echo "<td>$part1</td>";
+                        echo "<td>$second_event</td>";
+                        echo "<td>$part2</td>";
+                        echo "<td><input type='text' name='ranking[" . htmlspecialchars($row['id']) . "]' value='$ranking'></td>";
                         echo "</tr>";
+                        }
                     }
-                } else {
+                else {
                     echo "<tr><td colspan='7'>No records found</td></tr>";
                 }
                 ?>
