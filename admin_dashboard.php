@@ -101,7 +101,7 @@ $result = $conn->query($sql);
         <p style="color: green;">Rankings have been saved successfully!</p>
     <?php endif; ?>
 
-    <form id="filterForm" method="get" action="">
+    <form id="filterForm" method="post" action="">
         <table>
             <thead>
                 <tr>
