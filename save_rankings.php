@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $ranking = $conn->real_escape_string($ranking);
 
         // Update the ranking for the corresponding ID in the database
-        $sql = "UPDATE registration SET ranking='$ranking' WHERE id='$id'";
+        $sql = "UPDATE registration SET ranking='?' WHERE id='?'";
         if ($conn->query($sql) !== TRUE) {
             echo "Error updating record: " . $conn->error;
         }
