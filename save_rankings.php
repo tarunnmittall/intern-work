@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare($sql);
         
         // Bind parameters and execute
-        $stmt->bind_param("ii", $ranking, $id);
+        $stmt->bind_param("si", $ranking, $id);
         
         if ($stmt->execute()) {
             // Success
