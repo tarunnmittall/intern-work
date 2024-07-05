@@ -86,6 +86,14 @@ $result = $conn->query($sql);
     </script>
 </head>
 <body>
+<nav class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+</nav>
     <h1>Admin Dashboard - Report</h1>
 
     <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
