@@ -79,6 +79,11 @@ $result = $conn->query($sql);
             width: 100%;
         }
     </style>
+    <script>
+        function submitFilterForm() {
+            document.getElementById('filterForm').submit();
+        }
+    </script>
 </head>
 <body>
     <h1>Admin Dashboard - Report</h1>
@@ -87,14 +92,14 @@ $result = $conn->query($sql);
         <p style="color: green;">Rankings have been saved successfully!</p>
     <?php endif; ?>
 
-    <form method="post" action="save_rankings.php">
+    <form id="filterForm" method="get" action="">
         <table>
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>
                         First Event<br>
-                        <select name="first_event" onchange="this.form.submit()">
+                        <select name="first_event" onchange="submitFilterForm()">
                             <option value="">All</option>
                             <?php while($row = $firstEventsResult->fetch_assoc()) {
                                 $selected = ($row['first_event'] == $firstEventFilter) ? 'selected' : '';
@@ -106,7 +111,7 @@ $result = $conn->query($sql);
                     <th>First Event Partner</th>
                     <th>
                         Second Event<br>
-                        <select name="second_event" onchange="this.form.submit()">
+                        <select name="second_event" onchange="submitFilterForm()">
                             <option value="">All</option>
                             <?php while($row = $secondEventsResult->fetch_assoc()) {
                                 $selected = ($row['second_event'] == $secondEventFilter) ? 'selected' : '';
@@ -129,7 +134,6 @@ $result = $conn->query($sql);
                         else{
                             $ranking="";
                         }
-                        
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['first_event']) . "</td>";
@@ -141,17 +145,19 @@ $result = $conn->query($sql);
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='6'>No records found</td></tr>";
+                    echo "<tr><td colspan='7'>No records found</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
+    </form>
+
+    <form method="post" action="save_rankings.php">
         <input type="hidden" name="first_event_filter" value="<?php echo htmlspecialchars($firstEventFilter); ?>">
         <input type="hidden" name="second_event_filter" value="<?php echo htmlspecialchars($secondEventFilter); ?>">
         <div style="text-align:center;">
             <input type="submit" value="Save Rankings">
         </div>
-        </form>
     </form>
 </body>
 </html>
