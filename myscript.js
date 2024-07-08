@@ -1,17 +1,24 @@
-const slides = document.querySelector('.slides');
-const slide = document.querySelectorAll('.slide');
-const next = document.getElementById('next');
-const prev = document.getElementById('prev');
-let index = 0;
-function showSlide(index) {
-    slides.style.transform = `translateX(${-index * 100}%)`;
-}
-next.addEventListener('click', () => {
-    index = (index + 1) % slide.length;
-    showSlide(index);
+document.addEventListener('DOMContentLoaded', function() {
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.style.transform = `translateX(${100 * (i - index)}%)`;
+        });
+    }
+
+    prevBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide > 0) ? currentSlide - 1 : slides.length - 1;
+        showSlide(currentSlide);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentSlide = (currentSlide < slides.length - 1) ? currentSlide + 1 : 0;
+        showSlide(currentSlide);
+    });
+
+    showSlide(currentSlide);
 });
-prev.addEventListener('click', () => {
-    index = (index - 1 + slide.length) % slide.length;
-    showSlide(index);
-});
-showSlide(index);
