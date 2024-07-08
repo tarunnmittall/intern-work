@@ -14,9 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $food = isset($_POST['food']) ? $_POST['food'] : null;
     $stay = isset($_POST['stay']) ? $_POST['stay'] : null;
     $payment = isset($_POST['payment']) ? $_POST['payment'] : null;
-
     
-    include 'db_connection.php';
     $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
     if ($conn->connect_error) {
         die("Connection failed:" . $conn->connect_error);

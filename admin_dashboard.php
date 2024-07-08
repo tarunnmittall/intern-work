@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 }
-
 // Database connection
 include 'db_connection.php';
 
@@ -110,17 +109,13 @@ $result = $conn->query($sql);
     </style>
 </head>
 <body>
-    
     <div class="navbar">
         <a href="admin_login.php">Logout</a>
     </div>
-
     <h1>Admin Dashboard - Report</h1>
-
     <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
         <p style="color: green;">Rankings have been saved successfully!</p>
     <?php endif; ?>
-
     <form method="get" action="admin_dashboard.php">
     <table>
         <thead>
@@ -176,14 +171,13 @@ $result = $conn->query($sql);
             ?>
         </tbody>
     </table>
-</form>
-<form method="post" action="save_rankings.php">
-    <input type="hidden" name="first_event_filter" value="<?php echo htmlspecialchars($firstEventFilter); ?>">
-    <input type="hidden" name="second_event_filter" value="<?php echo htmlspecialchars($secondEventFilter); ?>">
-    <div style="text-align:center;">
-        <input type="submit" value="Save Rankings">
-    </div>
-</form>
-
+    </form>
+    <form method="post" action="save_rankings.php"></form>
+        <input type="hidden" name="first_event_filter" value="<?php echo htmlspecialchars($firstEventFilter); ?>">
+        <input type="hidden" name="second_event_filter" value="<?php echo htmlspecialchars($secondEventFilter); ?>">
+        <div style="text-align:center;">
+            <input type="submit" value="Save Rankings">
+        </div>
+    </form>
 </body>
 </html>

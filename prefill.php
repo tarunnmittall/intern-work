@@ -7,10 +7,8 @@
 <body>
 <nav class="navbar">
     <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Services</a></li>
-      <li><a href="#">Services</a></li>
+      <li><a href="login.html">Logout</a></li>
+      
     </ul>
 </nav>
     <div class="container">
