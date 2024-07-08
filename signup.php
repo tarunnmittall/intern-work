@@ -93,7 +93,7 @@ function validateForm() {
       </div> -->
       <div class="form-group">
         <label for="part1">Name of first event partner</label>
-        <select id="part1" name="part1" required>
+        <select id="part1" name="part1">
             <option value="other">Partner not Registered</option>
             <?php include 'fetch_partners.php'; ?>
         </select>
@@ -120,7 +120,7 @@ function validateForm() {
       </div> -->
       <div class="form-group">
         <label for="part2">Name of Second event partner</label>
-        <select id="part2" name="part2" required>
+        <select id="part2" name="part2">
             <<option value="other">Partner not Registered</option>
             <?php include 'fetchs_partners.php'; ?>
         </select>
@@ -200,7 +200,7 @@ function validateForm() {
       </div>
       <div class="form-group">
         <label for="utr">Payment Reference ID / UTR Number</label>
-        <input type="text" id="utr" name="utr" required>
+        <input type="text" id="utr" name="utr">
       </div>
       <!-- <div class="form-group">
         <label for="paid">Payment Confirmation <span class="mandatory">*</span></label>
