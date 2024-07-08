@@ -1,5 +1,20 @@
 <?php
-include 'db_connection.php';
+session_start();
+
+// Check if admin is logged in
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    // Redirect to admin login page if not logged in
+    header("Location: admin_login.php");
+    exit;
+}
+
+// Database connection
+$host = "localhost";
+$dbusername = "root";
+$dbpassword = "";
+$dbname = "intern";
+
+// Create connection
 $conn = new mysqli($host, $dbusername, $dbpassword, $dbname, 3307);
 
 // Check connection
@@ -7,33 +22,29 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if rankings data is posted
+// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Debugging: Print out the entire POST array to inspect
-    echo "<pre>";
-    print_r($_POST);
-    echo "</pre>";
+    // Loop through POST data to update rankings
+    foreach ($_POST['ranking'] as $id => $ranking) {
+        $id = $conn->real_escape_string($id);
+        $ranking = $conn->real_escape_string($ranking);
 
-    // Check if 'rankings' array exists in POST
-    if (isset($_POST['rankings']) && is_array($_POST['rankings'])) {
-        $rankings = $_POST['rankings'];
-
-        foreach ($rankings as $id => $ranking) {
-            // Prepare the query
-            $query = $conn->prepare("UPDATE registration SET ranking = ? WHERE id = ?");
-            $query->bind_param("si", $ranking, $id);
-
-            // Execute the query
-            if (!$query->execute()) {
-                echo "Error updating ranking for ID $id: " . $query->error;
-            }
+        // Update the ranking for the corresponding ID in the database
+        $sql = "UPDATE registration SET ranking='$ranking' WHERE id='$id'";
+        if ($conn->query($sql) !== TRUE) {
+            echo "Error updating record: " . $conn->error;
         }
-
-        // Redirect back to the admin dashboard with the filters applied
-        header("Location: admin_dashboard.php?success=1");
-        exit();
-    } else {
-        echo "No rankings data received.";
     }
+
+    // Redirect back to admin dashboard with success message
+    header("Location: admin_dashboard.php?success=1");
+    exit;
+} else {
+    // Redirect to admin dashboard if accessed without POST
+    header("Location: admin_dashboard.php");
+    exit;
 }
+
+// Close connection
+$conn->close();
 ?>

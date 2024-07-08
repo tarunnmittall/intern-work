@@ -108,6 +108,21 @@ $result = $conn->query($sql);
         }
     </style>
 </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Report</title>
+    <script>
+        function submitForm(action, method) {
+            var form = document.getElementById('rankingForm');
+            form.action = action;
+            form.method = method;
+            form.submit();
+        }
+    </script>
+</head>
 <body>
     <div class="navbar">
         <a href="admin_login.php">Logout</a>
@@ -116,67 +131,66 @@ $result = $conn->query($sql);
     <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
         <p style="color: green;">Rankings have been saved successfully!</p>
     <?php endif; ?>
-    <form method="get" action="admin_dashboard.php">
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>
-                    First Event<br>
-                    <select name="first_event" onchange="this.form.submit()">
-                        <option value="">All</option>
-                        <?php while($row = $firstEventsResult->fetch_assoc()) {
-                            $selected = ($row['first_event'] == $firstEventFilter) ? 'selected' : '';
-                            echo "<option value='" . htmlspecialchars($row['first_event'] ?? '') . "' $selected>" . htmlspecialchars($row['first_event'] ?? '') . "</option>";
-                        } ?>
-                        <option value="NULL" <?php echo ($firstEventFilter === 'NULL') ? 'selected' : ''; ?>>Null</option>
-                    </select>
-                </th>
-                <th>Phone Number</th>
-                <th>First Event Partner</th>
-                <th>
-                    Second Event<br>
-                    <select name="second_event" onchange="this.form.submit()">
-                        <option value="">All</option>
-                        <?php while($row = $secondEventsResult->fetch_assoc()) {
-                            $selected = ($row['second_event'] == $secondEventFilter) ? 'selected' : '';
-                            echo "<option value='" . htmlspecialchars($row['second_event'] ?? '') . "' $selected>" . htmlspecialchars($row['second_event'] ?? '') . "</option>";
-                        } ?>
-                        <option value="NULL" <?php echo ($secondEventFilter === 'NULL') ? 'selected' : ''; ?>>Null</option>
-                    </select>
-                </th>
-                <th>Second Event Partner</th>
-                <th>Ranking</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if ($result->num_rows > 0) {
-                // Output data of each row
-                while($row = $result->fetch_assoc()) {
-                    $ranking = isset($row['ranking']) ? htmlspecialchars($row['ranking']) : '';
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['name'] ?? '') . "</td>";
-                    echo "<td>" . htmlspecialchars($row['first_event'] ?? '') . "</td>";
-                    echo "<td>" . htmlspecialchars($row['phone'] ?? '') . "</td>";
-                    echo "<td>" . htmlspecialchars($row['part1'] ?? '') . "</td>";
-                    echo "<td>" . htmlspecialchars($row['second_event'] ?? '') . "</td>";
-                    echo "<td>" . htmlspecialchars($row['part2'] ?? '') . "</td>";
-                    echo "<td><input type='text' name='ranking[" . htmlspecialchars($row['id']) . "]' value='" . $ranking . "'></td>";
-                    echo "</tr>";
+    <form id="rankingForm" method="get" action="admin_dashboard.php">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>
+                        First Event<br>
+                        <select name="first_event" onchange="this.form.submit()">
+                            <option value="">All</option>
+                            <?php while($row = $firstEventsResult->fetch_assoc()) {
+                                $selected = ($row['first_event'] == $firstEventFilter) ? 'selected' : '';
+                                echo "<option value='" . htmlspecialchars($row['first_event'] ?? '') . "' $selected>" . htmlspecialchars($row['first_event'] ?? '') . "</option>";
+                            } ?>
+                            <option value="NULL" <?php echo ($firstEventFilter === 'NULL') ? 'selected' : ''; ?>>Null</option>
+                        </select>
+                    </th>
+                    <th>Phone Number</th>
+                    <th>First Event Partner</th>
+                    <th>
+                        Second Event<br>
+                        <select name="second_event" onchange="this.form.submit()">
+                            <option value="">All</option>
+                            <?php while($row = $secondEventsResult->fetch_assoc()) {
+                                $selected = ($row['second_event'] == $secondEventFilter) ? 'selected' : '';
+                                echo "<option value='" . htmlspecialchars($row['second_event'] ?? '') . "' $selected>" . htmlspecialchars($row['second_event'] ?? '') . "</option>";
+                            } ?>
+                            <option value="NULL" <?php echo ($secondEventFilter === 'NULL') ? 'selected' : ''; ?>>Null</option>
+                        </select>
+                    </th>
+                    <th>Second Event Partner</th>
+                    <th>Ranking</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ($result->num_rows > 0) {
+                    // Output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        $ranking = isset($row['ranking']) ? htmlspecialchars($row['ranking']) : '';
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['name'] ?? '') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['first_event'] ?? '') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['phone'] ?? '') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['part1'] ?? '') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['second_event'] ?? '') . "</td>";
+                        echo "<td>" . htmlspecialchars($row['part2'] ?? '') . "</td>";
+                        echo "<td><input type='text' name='ranking[" . htmlspecialchars($row['id']) . "]' value='" . $ranking . "'></td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='7'>No records found</td></tr>";
                 }
-            } else {
-                echo "<tr><td colspan='7'>No records found</td></tr>";
-            }
-            ?>
-        </tbody>
-    </table>
-    </form>
-    <form method="post" action="save_rankings.php"></form>
+                ?>
+            </tbody>
+        </table>
         <input type="hidden" name="first_event_filter" value="<?php echo htmlspecialchars($firstEventFilter); ?>">
         <input type="hidden" name="second_event_filter" value="<?php echo htmlspecialchars($secondEventFilter); ?>">
         <div style="text-align:center;">
-            <input type="submit" value="Save Rankings">
+            <!-- <button type="button" onclick="submitForm('admin_dashboard.php', 'get')">Filter</button> -->
+            <button type="button" onclick="submitForm('save_rankings.php', 'post')">Save Rankings</button>
         </div>
     </form>
 </body>
