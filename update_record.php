@@ -1,17 +1,17 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $city = $_POST['city'];
-    $first_event = $_POST['first_event'];
-    $part1 = $_POST['part1'];
-    $second_event = $_POST['second_event'];
-    $part2 = $_POST['part2'];
-    $shirt = $_POST['shirt'];
-    $short = $_POST['short'];
-    $food = $_POST['food'];
-    $stay = $_POST['stay'];
-    $payment=$_POST['payment'];
+    $id = $_POST['id'] ?? NULL;
+    $name = $_POST['name'] ?? NULL;
+    $city = $_POST['city'] ?? NULL;
+    $first_event = $_POST['first_event'] ?? NULL;
+    $part1 = $_POST['part1'] ?? NULL;
+    $second_event = $_POST['second_event'] ?? NULL;
+    $part2 = $_POST['part2'] ?? NULL;
+    $shirt = $_POST['shirt'] ?? NULL;
+    $short = $_POST['short'] ?? NULL;
+    $food = $_POST['food'] ?? NULL;
+    $stay = $_POST['stay'] ?? NULL;
+    $payment = $_POST['payment'] ?? NULL;
 
     include 'db_connection.php';
 

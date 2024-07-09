@@ -20,15 +20,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed:" . $conn->connect_error);
     } else {
         // Check if the record with the same phone and dob already exists
-        $checkStmt = $conn->prepare("SELECT * FROM registration WHERE phone=? OR dob=?");
-        $checkStmt->bind_param("ss", $phone, $dob);
+        $checkStmt = $conn->prepare("SELECT * FROM registration WHERE phone=?");
+        $checkStmt->bind_param("s", $phone);
         $checkStmt->execute();
         $checkStmtResult = $checkStmt->get_result();
 
         if ($checkStmtResult->num_rows > 0) {
             // Record already exists
             echo '<script>
-                alert("Record with the same WhatsApp number and Date of Birth already exists.");
+                alert("Record with the same WhatsApp number already exists.");
                 window.location.href = "login.html";
                 </script>';
         } else {

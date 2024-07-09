@@ -40,13 +40,13 @@
         <div class="form-group">
             <label for="name">First Event</label>
             <div class="radio-options">
-                <input type="radio" id="event_75" name="first_event" value="75+" <?php if ($_GET['first_event'] === '75+') echo 'checked'; ?>>
+                <input type="radio" id="event_75" name="first_event" value="75+" <?php if (isset($_GET['first_event']) && $_GET['first_event'] === '75+') echo 'checked'; ?>>
                 <label for="event_75">75+</label>
-                <input type="radio" id="event_90" name="first_event" value="90+" <?php if ($_GET['first_event'] === '90+') echo 'checked'; ?>>
+                <input type="radio" id="event_90" name="first_event" value="90+" <?php if (isset($_GET['first_event']) && $_GET['first_event'] === '90+') echo 'checked'; ?>>
                 <label for="event_90">90+</label>
-                <input type="radio" id="event_105" name="first_event" value="105+" <?php if ($_GET['first_event'] === '105+') echo 'checked'; ?>>
+                <input type="radio" id="event_105" name="first_event" value="105+" <?php if (isset($_GET['first_event']) && $_GET['first_event'] === '105+') echo 'checked'; ?>>
                 <label for="event_105">105+</label>
-                <input type="radio" id="event_120" name="first_event" value="120+" <?php if ($_GET['first_event'] === '120+') echo 'checked'; ?>>
+                <input type="radio" id="event_120" name="first_event" value="120+" <?php if (isset($_GET['first_event']) && $_GET['first_event'] === '120+') echo 'checked'; ?>>
                 <label for="event_120">120+</label>
         </div>
         <br>
@@ -58,13 +58,13 @@
         <div class="form-group">
             <label for="name">Second Event</label>
             <div class="radio-options">
-                <input type="radio" id="event_75" name="second_event" value="75+" <?php if ($_GET['second_event'] === '75+') echo 'checked'; ?>>
+                <input type="radio" id="event_75" name="second_event" value="75+" <?php if (isset($_GET['second_event']) && $_GET['second_event'] === '75+') echo 'checked'; ?>>
                 <label for="event_75">75+</label>
-                <input type="radio" id="event_90" name="second_event" value="90+" <?php if ($_GET['second_event'] === '90+') echo 'checked'; ?>>
+                <input type="radio" id="event_90" name="second_event" value="90+" <?php if (isset($_GET['second_event']) && $_GET['second_event'] === '90+') echo 'checked'; ?>>
                 <label for="event_90">90+</label>
-                <input type="radio" id="event_105" name="second_event" value="105+" <?php if ($_GET['second_event'] === '105+') echo 'checked'; ?>>
+                <input type="radio" id="event_105" name="second_event" value="105+" <?php if (isset($_GET['second_event']) && $_GET['second_event'] === '105+') echo 'checked'; ?>>
                 <label for="event_105">105+</label>
-                <input type="radio" id="event_120" name="second_event" value="120+" <?php if ($_GET['second_event'] === '120+') echo 'checked'; ?>>
+                <input type="radio" id="event_120" name="second_event" value="120+" <?php if (isset($_GET['second_event']) && $_GET['second_event'] === '120+') echo 'checked'; ?>>
                 <label for="event_120">120+</label>
         </div>
         <br>
@@ -76,19 +76,19 @@
         <div class="form-group">
             <label for="short">Indian Tree T-Shirt size</label>
             <div class="radio-options">
-                <input type="radio" id="small" name="shirt" value="small" <?php if ($_GET['shirt'] === 'small') echo 'checked'; ?>>
+                <input type="radio" id="small" name="shirt" value="small" <?php if (isset($_GET['shirt']) && $_GET['shirt'] === 'small') echo 'checked'; ?>>
                 <label for="small">Small</label>
-                <input type="radio" id="medium" name="shirt" value="medium" <?php if ($_GET['shirt'] === 'medium') echo 'checked'; ?>>
+                <input type="radio" id="medium" name="shirt" value="medium" <?php if (isset($_GET['shirt']) && $_GET['shirt'] === 'medium') echo 'checked'; ?>>
                 <label for="medium">Medium</label>
-                <input type="radio" id="large" name="shirt" value="large" <?php if ($_GET['shirt'] === 'large') echo 'checked'; ?>>
+                <input type="radio" id="large" name="shirt" value="large" <?php if (isset($_GET['shirt']) && $_GET['shirt'] === 'large') echo 'checked'; ?>>
                 <label for="large">Large</label>
-                <input type="radio" id="xlarge" name="shirt" value="xlarge" <?php if ($_GET['shirt'] === 'xlarge') echo 'checked'; ?>>
+                <input type="radio" id="xlarge" name="shirt" value="xlarge" <?php if (isset($_GET['shirt']) && $_GET['shirt'] === 'xlarge') echo 'checked'; ?>>
                 <label for="xlarge">X-Large</label>
-                <input type="radio" id="xxlarge" name="shirt" value="xxlarge" <?php if ($_GET['shirt'] === 'xxlarge') echo 'checked'; ?>>
+                <input type="radio" id="xxlarge" name="shirt" value="xxlarge" <?php if (isset($_GET['shirt']) && $_GET['shirt'] === 'xxlarge') echo 'checked'; ?>>
                 <label for="xxlarge">XX-Large</label>
-                <input type="radio" id="xxxlarge" name="shirt" value="xxxlarge"<?php if ($_GET['shirt'] === 'xxxlarge') echo 'checked'; ?>>
+                <input type="radio" id="xxxlarge" name="shirt" value="xxxlarge"<?php if (isset($_GET['shirt']) && $_GET['shirt'] === 'xxxlarge') echo 'checked'; ?>>
                 <label for="xxxlarge">XXX-Large</label>
-                <input type="radio" id="no" name="shirt" value="no" <?php if ($_GET['shirt'] === 'no') echo 'checked'; ?>>
+                <input type="radio" id="no" name="shirt" value="no" <?php if (isset($_GET['shirt']) && $_GET['shirt'] === 'no') echo 'checked'; ?>>
                 <label for="no">i dont need</label>
             </div>
         </div>
@@ -96,19 +96,19 @@
         <div class="form-group">
             <label for="short">Indian Tree Shorts size</label>
             <div class="radio-options">
-                <input type="radio" id="small" name="short" value="small" <?php if ($_GET['short'] === 'small') echo 'checked'; ?>>
+                <input type="radio" id="small" name="short" value="small" <?php if (isset($_GET['short']) && $_GET['short'] === 'small') echo 'checked'; ?>>
                 <label for="small">Small</label>
-                <input type="radio" id="medium" name="short" value="medium" <?php if ($_GET['short'] === 'medium') echo 'checked'; ?>>
+                <input type="radio" id="medium" name="short" value="medium" <?php if (isset($_GET['short']) && $_GET['short'] === 'medium') echo 'checked'; ?>>
                 <label for="medium">Medium</label>
-                <input type="radio" id="large" name="short" value="large" <?php if ($_GET['short'] === 'large') echo 'checked'; ?>>
+                <input type="radio" id="large" name="short" value="large" <?php if (isset($_GET['short']) && $_GET['short'] === 'large') echo 'checked'; ?>>
                 <label for="large">Large</label>
-                <input type="radio" id="xlarge" name="short" value="xlarge" <?php if ($_GET['short'] === 'xlarge') echo 'checked'; ?>>
+                <input type="radio" id="xlarge" name="short" value="xlarge" <?php if (isset($_GET['short']) && $_GET['short'] === 'xlarge') echo 'checked'; ?>>
                 <label for="xlarge">X-Large</label>
-                <input type="radio" id="xxlarge" name="short" value="xxlarge" <?php if ($_GET['short'] === 'xxlarge') echo 'checked'; ?>>
+                <input type="radio" id="xxlarge" name="short" value="xxlarge" <?php if (isset($_GET['short']) && $_GET['short'] === 'xxlarge') echo 'checked'; ?>>
                 <label for="xxlarge">XX-Large</label>
-                <input type="radio" id="xxxlarge" name="short" value="xxxlarge"<?php if ($_GET['short'] === 'xxxlarge') echo 'checked'; ?>>
+                <input type="radio" id="xxxlarge" name="short" value="xxxlarge"<?php if (isset($_GET['short']) && $_GET['short'] === 'xxxlarge') echo 'checked'; ?>>
                 <label for="xxxlarge">XXX-Large</label>
-                <input type="radio" id="no" name="short" value="no" <?php if ($_GET['short'] === 'no') echo 'checked'; ?>>
+                <input type="radio" id="no" name="short" value="no" <?php if (isset($_GET['short']) && $_GET['short'] === 'no') echo 'checked'; ?>>
                 <label for="no">i dont need</label>
             </div>
         </div>
@@ -116,29 +116,29 @@
         <div class="form-group">
             <label for="name">Gala dinner Food preference</label>
             <div class="radio-options">
-                <input type="radio" id="non-veg" name="food" value="non-veg" <?php if ($_GET['food'] === 'non-veg') echo 'checked'; ?>>
+                <input type="radio" id="non-veg" name="food" value="non-veg" <?php if (isset($_GET['food']) && $_GET['food'] === 'non-veg') echo 'checked'; ?>>
                 <label for="non-veg">Non-Vegetarian</label>
-                <input type="radio" id="veg" name="food" value="veg" <?php if ($_GET['food'] === 'veg') echo 'checked'; ?>>
+                <input type="radio" id="veg" name="food" value="veg" <?php if (isset($_GET['food']) && $_GET['food'] === 'veg') echo 'checked'; ?>>
                 <label for="veg">Vegetarian</label>
-                <input type="radio" id="no" name="food" value="no" <?php if ($_GET['food'] === 'no') echo 'checked'; ?>>
+                <input type="radio" id="no" name="food" value="no" <?php if (isset($_GET['food']) && $_GET['food'] === 'no') echo 'checked'; ?>>
                 <label for="no">I wont be there for gala dinner</label>
         </div>
         <br>
         <div class="form-group">
             <label for="name">Do you want tournament management to arrange your stay</label>
             <div class="radio-options">
-                <input type="radio" id="yes" name="stay" value="yes" <?php if ($_GET['stay'] === 'yes') echo 'checked'; ?>>
+                <input type="radio" id="yes" name="stay" value="yes" <?php if (isset($_GET['stay']) && $_GET['stay'] === 'yes') echo 'checked'; ?>>
                 <label for="yes">Yes</label>
-                <input type="radio" id="nil" name="stay" value="nil" <?php if ($_GET['stay'] === 'nil') echo 'checked'; ?>>
+                <input type="radio" id="nil" name="stay" value="nil" <?php if (isset($_GET['stay']) && $_GET['stay'] === 'nil') echo 'checked'; ?>>
                 <label for="nil">No</label>
         </div>
         <br>
         <div class="form-group">
             <label for="name">Have you made the payment?</label>
             <div class="radio-options">
-                <input type="radio" id="yes" name="payment" value="yes" <?php if ($_GET['payment'] === 'yes') echo 'checked'; ?>>
+                <input type="radio" id="yes" name="payment" value="yes" <?php if (isset($_GET['payment']) && $_GET['payment'] === 'yes') echo 'checked'; ?>>
                 <label for="yes">Yes</label>
-                <input type="radio" id="nil" name="payment" value="nil" <?php if ($_GET['payment'] === 'yes') echo 'checked'; ?>>
+                <input type="radio" id="nil" name="payment" value="nil" <?php if (isset($_GET['payment']) && $_GET['payment'] === 'yes') echo 'checked'; ?>>
                 <label for="nil">No</label>
             </div>
         </div>
